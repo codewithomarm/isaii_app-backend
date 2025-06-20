@@ -1,0 +1,28 @@
+package com.isaiiapp.backend.auth.v1.permission.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(schema = "auth", name = "permission",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "name", name = "permission_name_UNIQUE")
+        })
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Permission {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull(message = "Name should not be null")
+    @Column(nullable = false, unique = true, length = 100)
+    private String permission;
+
+    private String description;
+}
