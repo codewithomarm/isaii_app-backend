@@ -24,15 +24,31 @@ repositories {
 }
 
 dependencies {
+	// Spring Boot Starters
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Validation API
 	implementation 'jakarta.validation:jakarta.validation-api'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// PostgreSQL
 	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.flywaydb:flyway-core'
+
+	// JWT
+	implementation 'io.jsonwebtoken::jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// Development
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// Testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -40,4 +56,13 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Configuración para el JAR ejecutable
+jar {
+	enabled = false
+}
+
+bootJar {
+	archiveFileName = 'app-0.0.1-SNAPSHOT.jar'
 }
