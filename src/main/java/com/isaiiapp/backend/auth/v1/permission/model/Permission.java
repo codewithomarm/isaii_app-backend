@@ -22,7 +22,7 @@ public class Permission {
 
     @NotNull(message = "Name should not be null")
     @Column(nullable = false, unique = true, length = 100)
-    private String permission;
+    private String name;
 
     private String description;
 }
