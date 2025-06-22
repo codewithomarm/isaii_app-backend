@@ -4,9 +4,15 @@ import com.isaiiapp.backend.auth.v1.roles.model.Roles;
 import com.isaiiapp.backend.auth.v1.users.model.Users;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(schema = "auth", name = "users_roles")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class UsersRoles {
 
     @EmbeddedId

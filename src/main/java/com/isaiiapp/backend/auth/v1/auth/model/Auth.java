@@ -4,13 +4,24 @@ import com.isaiiapp.backend.auth.v1.users.model.Users;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(schema = "auth", name = "auth",
-        uniqueConstraints = @UniqueConstraint(columnNames = "users_id", name = "auth_userId_UNIQUE"))
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "user_id", name = "auth_userId_UNIQUE")
+        },
+        indexes = {
+            @Index(columnList = "user_id", name = "fk_auth_users_idx")
+        })
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Auth {
 
     @Id
@@ -19,7 +30,7 @@ public class Auth {
 
     @OneToOne
     @NotNull(message = "User should not be null")
-    @JoinColumn(name = "users_id", nullable = false, unique = true,
+    @JoinColumn(name = "user_id", nullable = false, unique = true,
                 foreignKey = @ForeignKey(name = "fk_auth_users"))
     private Users user;
 
