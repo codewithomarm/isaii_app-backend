@@ -2,6 +2,7 @@ package com.isaiiapp.backend.auth.v1.permission.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Permission {
     private Long id;
 
     @NotNull(message = "Name should not be null")
+    @Size(min = 4, max = 100, message = "Name should be between 4 and 100 characters")
     @Column(nullable = false, unique = true, length = 100)
     private String name;
 
