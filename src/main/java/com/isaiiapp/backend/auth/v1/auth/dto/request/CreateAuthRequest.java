@@ -31,4 +31,16 @@ public class CreateAuthRequest {
 
     @NotNull(message = "Enabled status should not be null")
     private Boolean enabled;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
 }
