@@ -17,20 +17,4 @@ public class CreatePermissionRequest {
 
     @Size(max = 255, message = "Description should not exceed 255 characters")
     private String description;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

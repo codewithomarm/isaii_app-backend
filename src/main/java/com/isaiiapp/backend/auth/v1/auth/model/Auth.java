@@ -61,62 +61,6 @@ public class Auth {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    public Long getId() {
-        return id;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public String getRecuperationTkn() {
-        return recuperationTkn;
-    }
-
-    public LocalDateTime getRecuperationTknExp() {
-        return recuperationTknExp;
-    }
-
-    public Integer getLoginAttempts() {
-        return loginAttempts;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public void setLoginAttempts(Integer loginAttempts) {
-        this.loginAttempts = loginAttempts;
-    }
-
     @PrePersist
     public void prePersist() {
         initializeTimeStamps();
