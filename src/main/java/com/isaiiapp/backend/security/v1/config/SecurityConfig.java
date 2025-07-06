@@ -35,26 +35,30 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Endpoints públicos
                         .requestMatchers(
-                                "/api/v1/auth/login",
-                                "/api/v1/auth/refresh",
-                                "/api/v1/auth/register",
-                                "/api/v1/auth/forgot-password",
-                                "/api/v1/auth/reset-password",
+                                "/v1/auth/login",
+                                "/v1/auth/refresh",
+                                "/v1/auth/register",
+                                "/v1/auth/forgot-password",
+                                "/v1/auth/reset-password",
+                                "/v1/test/public",
                                 "/actuator/health",
                                 "/actuator/info"
                         ).permitAll()
 
+                        // Endpoints de test
+                        .requestMatchers("/v1/test/**").permitAll()  // ✅ AGREGADO: todos los endpoints de test públicos
+
                         // Endpoints de administración
-                        .requestMatchers("/api/v1/admin/**").hasAuthority("PERMISSION_SYSTEM_ADMIN")
+                        .requestMatchers("/v1/admin/**").hasAuthority("PERMISSION_SYSTEM_ADMIN")
 
                         // Endpoints de usuarios
-                        .requestMatchers("/api/v1/users/**").hasAnyAuthority("PERMISSION_USER_READ", "PERMISSION_SYSTEM_ADMIN")
+                        .requestMatchers("/v1/users/**").hasAnyAuthority("PERMISSION_USER_READ", "PERMISSION_SYSTEM_ADMIN")
 
                         // Endpoints de roles
-                        .requestMatchers("/api/v1/roles/**").hasAnyAuthority("PERMISSION_ROLE_READ", "PERMISSION_SYSTEM_ADMIN")
+                        .requestMatchers("/v1/roles/**").hasAnyAuthority("PERMISSION_ROLE_READ", "PERMISSION_SYSTEM_ADMIN")
 
                         // Endpoints de permisos
-                        .requestMatchers("/api/v1/permissions/**").hasAnyAuthority("PERMISSION_PERMISSION_READ", "PERMISSION_SYSTEM_ADMIN")
+                        .requestMatchers("/v1/permissions/**").hasAnyAuthority("PERMISSION_PERMISSION_READ", "PERMISSION_SYSTEM_ADMIN")
 
                         // Cualquier otra petición requiere autenticación
                         .anyRequest().authenticated()

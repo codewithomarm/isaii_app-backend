@@ -14,7 +14,8 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @Table(schema = "auth", name = "auth",
         uniqueConstraints = {
-            @UniqueConstraint(columnNames = "user_id", name = "auth_userId_UNIQUE")
+            @UniqueConstraint(columnNames = "user_id", name = "auth_userId_UNIQUE"),
+            @UniqueConstraint(columnNames = "username", name = "auth_username_UNIQUE")
         },
         indexes = {
             @Index(columnList = "user_id", name = "fk_auth_users_idx")
