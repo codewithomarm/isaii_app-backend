@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/tables")
+@RequestMapping("/v1/tables")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class TablesController {

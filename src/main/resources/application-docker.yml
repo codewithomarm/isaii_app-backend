@@ -1,0 +1,29 @@
+# =====================================================
+# CONFIGURACIÓN PARA EL PERFIL DOCKER
+# =====================================================
+
+spring:
+  jpa:
+    # Deshabilitar Open In View para mejor rendimiento en API REST
+    open-in-view: false
+    hibernate:
+      # Dejar que Hibernate valide que las tablas existen, pero no las cree/modifique
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # Logging
+  logging:
+    level:
+      com.isaiiapp.backend: INFO
+      org.springframework.security: INFO
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Server configuration
+server:
+  # Cambiar el context path para que coincida con los logs
+  servlet:
+    context-path: /api
