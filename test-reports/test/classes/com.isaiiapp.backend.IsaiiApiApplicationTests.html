@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - IsaiiApiApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>IsaiiApiApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.isaiiapp.backend.html">com.isaiiapp.backend</a> &gt; IsaiiApiApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.305s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+<li>
+<a href="#">Standard error</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">contextLoads()</td>
+<td class="success">0.305s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>06:45:48.266 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.isaiiapp.backend.IsaiiApiApplicationTests]: IsaiiApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+06:45:48.386 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.isaiiapp.backend.IsaiiApiApplication for test class com.isaiiapp.backend.IsaiiApiApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.0)
+
+2025-07-16 06:45:48 - Starting IsaiiApiApplicationTests using Java 24 with PID 276 (started by root in /app)
+2025-07-16 06:45:48 - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-07-16 06:45:48 - The following 1 profile is active: &quot;docker&quot;
+2025-07-16 06:45:49 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-16 06:45:49 - Finished Spring Data repository scanning in 91 ms. Found 13 JPA repository interfaces.
+2025-07-16 06:45:50 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-16 06:45:50 - HHH000412: Hibernate ORM core version 6.6.15.Final
+2025-07-16 06:45:50 - HHH000026: Second-level cache disabled
+2025-07-16 06:45:50 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-16 06:45:50 - HikariPool-1 - Starting...
+2025-07-16 06:45:51 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@289a4b90
+2025-07-16 06:45:51 - HikariPool-1 - Start completed.
+2025-07-16 06:45:51 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-16 06:45:51 - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.9
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-16 06:45:52 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    set client_min_messages = WARNING
+Hibernate: 
+    alter table if exists auth.auth 
+       drop constraint if exists fk_auth_users
+Hibernate: 
+    alter table if exists auth.roles_permission 
+       drop constraint if exists fk_roles_permission_permission
+Hibernate: 
+    alter table if exists auth.roles_permission 
+       drop constraint if exists fk_roles_permission_roles
+Hibernate: 
+    alter table if exists auth.session 
+       drop constraint if exists fk_session_users
+Hibernate: 
+    alter table if exists auth.users_roles 
+       drop constraint if exists fk_users_roles_roles
+Hibernate: 
+    alter table if exists auth.users_roles 
+       drop constraint if exists fk_users_roles_users
+Hibernate: 
+    drop table if exists auth.auth cascade
+Hibernate: 
+    drop table if exists auth.permission cascade
+Hibernate: 
+    drop table if exists auth.roles cascade
+Hibernate: 
+    drop table if exists auth.roles_permission cascade
+Hibernate: 
+    drop table if exists auth.session cascade
+Hibernate: 
+    drop table if exists auth.users cascade
+Hibernate: 
+    drop table if exists auth.users_roles cascade
+Hibernate: 
+    alter table if exists orders.order_item 
+       drop constraint if exists fk_order_item_orders
+Hibernate: 
+    alter table if exists orders.order_item 
+       drop constraint if exists fk_order_item_products
+Hibernate: 
+    alter table if exists orders.orders 
+       drop constraint if exists fk_orders_status
+Hibernate: 
+    alter table if exists orders.orders 
+       drop constraint if exists fk_orders_tables
+Hibernate: 
+    alter table if exists orders.orders 
+       drop constraint if exists fk_orders_users
+Hibernate: 
+    drop table if exists orders.order_item cascade
+Hibernate: 
+    drop table if exists orders.orders cascade
+Hibernate: 
+    drop table if exists orders.status cascade
+Hibernate: 
+    alter table if exists product.product 
+       drop constraint if exists fk_product_category
+Hibernate: 
+    drop table if exists product.category cascade
+Hibernate: 
+    drop table if exists product.product cascade
+Hibernate: 
+    drop table if exists tables.tables cascade
+Hibernate: 
+    create table auth.auth (
+        enabled boolean not null,
+        login_attempts integer,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        recuperation_tkn_exp timestamp(6),
+        user_id bigint not null unique,
+        recuperation_tkn varchar(10),
+        username varchar(100) not null unique,
+        password_hash varchar(150) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table auth.permission (
+        id bigint generated by default as identity,
+        name varchar(100) not null unique,
+        description varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table auth.roles (
+        id bigint generated by default as identity,
+        name varchar(50) not null unique,
+        description varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table auth.roles_permission (
+        permission_id bigint not null,
+        role_id bigint not null,
+        constraint rolesPermission_roleId_permissionId_UNIQUE primary key (role_id, permission_id)
+    )
+Hibernate: 
+    create table auth.session (
+        is_active boolean,
+        access_token_expires_at timestamp(6) not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        last_activity_at timestamp(6) not null,
+        refresh_token_expires_at timestamp(6) not null,
+        user_id bigint not null,
+        access_token varchar(600) not null unique,
+        refresh_token varchar(600) not null unique,
+        primary key (id)
+    )
+Hibernate: 
+    create table auth.users (
+        is_active boolean,
+        employee_id varchar(7) not null unique,
+        id bigint generated by default as identity,
+        first_name varchar(150) not null,
+        last_name varchar(150) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table auth.users_roles (
+        roles_id bigint not null,
+        users_id bigint not null,
+        primary key (roles_id, users_id)
+    )
+Hibernate: 
+    create index fk_auth_users_idx 
+       on auth.auth (user_id)
+Hibernate: 
+    create index fk_roles_permission_roles_idx 
+       on auth.roles_permission (role_id)
+Hibernate: 
+    create index fk_roles_permission_permission_idx 
+       on auth.roles_permission (permission_id)
+Hibernate: 
+    create index fk_session_users_idx 
+       on auth.session (user_id)
+Hibernate: 
+    create table orders.order_item (
+        quantity integer not null check (quantity&gt;=1),
+        subtotal numeric(10,2) not null,
+        unit_price numeric(10,2) not null,
+        id bigint generated by default as identity,
+        order_id bigint not null,
+        product_id bigint not null,
+        special_instructions varchar(250),
+        primary key (id)
+    )
+Hibernate: 
+    create table orders.orders (
+        is_takeaway boolean not null,
+        total_amount numeric(10,2) not null,
+        canceled_at timestamp(6),
+        completed_at timestamp(6),
+        confirmed_at timestamp(6) not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        in_progress_at timestamp(6),
+        paid_at timestamp(6),
+        status_id bigint not null,
+        table_id bigint not null,
+        updated_at timestamp(6),
+        user_id bigint not null,
+        notes varchar(250),
+        primary key (id)
+    )
+Hibernate: 
+    create table orders.status (
+        id bigint generated by default as identity,
+        name varchar(20) not null unique,
+        description varchar(100) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create index fk_order_item_orders_idx 
+       on orders.order_item (order_id)
+Hibernate: 
+    create index fk_order_item_product_idx 
+       on orders.order_item (product_id)
+Hibernate: 
+    create index fk_orders_users_idx 
+       on orders.orders (user_id)
+Hibernate: 
+    create index fk_orders_tables_idx 
+       on orders.orders (table_id)
+Hibernate: 
+    create index fk_orders_status_idx 
+       on orders.orders (status_id)
+Hibernate: 
+    create index orders_created_at_idx 
+       on orders.orders (created_at)
+Hibernate: 
+    create table product.category (
+        is_active boolean not null,
+        id bigint generated by default as identity,
+        name varchar(50) not null unique,
+        description varchar(150) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table product.product (
+        is_active boolean not null,
+        price numeric(10,2) not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        name varchar(50) not null,
+        description varchar(100) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create index fk_product_category_idx 
+       on product.product (category_id)
+Hibernate: 
+    create table tables.tables (
+        capacity integer not null,
+        is_active boolean not null,
+        id bigint generated by default as identity,
+        status varchar(10) not null,
+        table_number varchar(10) not null unique,
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists auth.auth 
+       add constraint fk_auth_users 
+       foreign key (user_id) 
+       references auth.users
+Hibernate: 
+    alter table if exists auth.roles_permission 
+       add constraint fk_roles_permission_permission 
+       foreign key (permission_id) 
+       references auth.permission
+Hibernate: 
+    alter table if exists auth.roles_permission 
+       add constraint fk_roles_permission_roles 
+       foreign key (role_id) 
+       references auth.roles
+Hibernate: 
+    alter table if exists auth.session 
+       add constraint fk_session_users 
+       foreign key (user_id) 
+       references auth.users
+Hibernate: 
+    alter table if exists auth.users_roles 
+       add constraint fk_users_roles_roles 
+       foreign key (roles_id) 
+       references auth.roles
+Hibernate: 
+    alter table if exists auth.users_roles 
+       add constraint fk_users_roles_users 
+       foreign key (users_id) 
+       references auth.users
+Hibernate: 
+    alter table if exists orders.order_item 
+       add constraint fk_order_item_orders 
+       foreign key (order_id) 
+       references orders.orders
+Hibernate: 
+    alter table if exists orders.order_item 
+       add constraint fk_order_item_products 
+       foreign key (product_id) 
+       references product.product
+Hibernate: 
+    alter table if exists orders.orders 
+       add constraint fk_orders_status 
+       foreign key (status_id) 
+       references orders.status
+Hibernate: 
+    alter table if exists orders.orders 
+       add constraint fk_orders_tables 
+       foreign key (table_id) 
+       references tables.tables
+Hibernate: 
+    alter table if exists orders.orders 
+       add constraint fk_orders_users 
+       foreign key (user_id) 
+       references auth.users
+Hibernate: 
+    alter table if exists product.product 
+       add constraint fk_product_category 
+       foreign key (category_id) 
+       references product.category
+2025-07-16 06:45:52 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-16 06:45:52 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-16 06:45:54 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-07-16 06:45:54 - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/order/status] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PUT, /v1/order/status/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [DELETE, /v1/order/status/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/order/status/initialize-defaults] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order/status/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order/status/check-name/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order/status/stats] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/product/product] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PUT, /v1/product/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [DELETE, /v1/product/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/product/product/*/toggle-status] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/product/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/product/product/inactive] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/product/product/created-between] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/product/product/updated-between] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/product/product/stats] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/orders] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PUT, /v1/orders/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/notes] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/total] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/orders/*/recalculate-total] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [DELETE, /v1/orders/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/status] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/mark-in-progress] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/mark-completed] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/mark-paid] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/orders/*/mark-canceled] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/user/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/employee/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/search/user] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/search/notes] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/created-between] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/total-range] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/stats] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/average-preparation-time] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/orders/inconsistent-totals] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/orders/recalculate-all-totals] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [POST, /v1/order-items] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PUT, /v1/order-items/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/order-items/*/quantity] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/order-items/*/unit-price] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [PATCH, /v1/order-items/*/instructions] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [DELETE, /v1/order-items/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/count/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/total-quantity/product/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/stats] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/most-ordered-products] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - One of the patterns in [GET, /v1/order-items/todays-most-ordered-products] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-16 06:45:55 - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-07-16 06:45:55 - Started IsaiiApiApplicationTests in 6.892 seconds (process running for 7.883)
+</pre>
+</span>
+</div>
+<div class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/root/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.5/58f9507f5f28d1d3e7adfb4ec2fe37c29d332c9b/byte-buddy-agent-1.17.5.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14</a> at Jul 16, 2025, 6:45:58 AM</p>
+</div>
+</div>
+</body>
+</html>

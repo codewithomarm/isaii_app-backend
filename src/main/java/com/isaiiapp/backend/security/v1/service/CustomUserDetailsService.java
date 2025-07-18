@@ -37,31 +37,22 @@ public class CustomUserDetailsService  implements UserDetailsService {
                     return new UsernameNotFoundException("User not found with username: " + username);
                 });
 
-        // Verificar si la cuenta está habilitada
         if (!auth.getEnabled()) {
             log.warn("Account is disabled for username: {}", username);
             throw new UsernameNotFoundException("Account is disabled for username: " + username);
         }
 
-        // Verificar si el usuario está activo
         if (!auth.getUser().getIsActive()) {
             log.warn("User is inactive for username: {}", username);
             throw new UsernameNotFoundException("User is inactive for username: " + username);
         }
 
-        // Cargar permisos del usuario
-        List<Permission> permissions = permissionRepository.findPermissionsByUserIdList(auth.getUser().getId());
-        List<GrantedAuthority> authorities = permissions.stream()
-                .map(permission -> new SimpleGrantedAuthority("PERMISSION_" + permission.getName()))
+        // Cargar permisos como authorities
+        List<GrantedAuthority> authorities = permissionRepository.findPermissionsByUserIdList(auth.getUser().getId())
+                .stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                .distinct()
                 .collect(Collectors.toList());
-
-        // Agregar roles como authorities también
-        authorities.addAll(
-                permissionRepository.findPermissionsByUserIdList(auth.getUser().getId()).stream()
-                        .map(permission -> new SimpleGrantedAuthority("ROLE_USER"))
-                        .distinct()
-                        .collect(Collectors.toList())
-        );
 
         log.debug("User loaded successfully: {} with {} authorities", username, authorities.size());
 

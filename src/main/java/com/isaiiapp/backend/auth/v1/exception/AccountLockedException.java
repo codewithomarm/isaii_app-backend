@@ -1,6 +1,8 @@
 package com.isaiiapp.backend.auth.v1.exception;
 
-public class AccountLockedException extends AuthException {
+import org.springframework.security.authentication.BadCredentialsException;
+
+public class AccountLockedException extends BadCredentialsException {
 
     public AccountLockedException(String message) {
         super(message);

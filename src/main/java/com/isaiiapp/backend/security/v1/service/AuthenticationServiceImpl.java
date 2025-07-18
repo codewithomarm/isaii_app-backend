@@ -1,6 +1,7 @@
 package com.isaiiapp.backend.security.v1.service;
 
 import com.isaiiapp.backend.auth.v1.auth.service.AuthService;
+import com.isaiiapp.backend.auth.v1.exception.AccountLockedException;
 import com.isaiiapp.backend.auth.v1.session.model.Session;
 import com.isaiiapp.backend.auth.v1.session.service.SessionService;
 import com.isaiiapp.backend.auth.v1.users.mapper.UsersMapper;
@@ -39,7 +40,8 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         try {
             // Verificar si la cuenta está bloqueada
             if (authService.isAccountLocked(request.getUsername(), 5)) {
-                throw new RuntimeException("Account is locked due to too many failed login attempts");
+                log.warn("Cuenta bloqueada para usuario: {}", request.getUsername());
+                throw new AccountLockedException("Account is locked due to too many failed login attempts");
             }
 
             // Autenticar con Spring Security
@@ -81,14 +83,17 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         } catch (Exception e) {
             log.error("Authentication failed for user: {}", request.getUsername(), e);
 
-            // Incrementar intentos de login fallidos
-            try {
-                authService.incrementLoginAttempts(request.getUsername());
-            } catch (Exception ex) {
-                log.warn("Could not increment login attempts for user: {}", request.getUsername());
+            // Solo incrementar si no es bloqueo
+            if (!(e instanceof AccountLockedException)) {
+                try {
+                    authService.incrementLoginAttempts(request.getUsername());
+                    System.out.println("Intento fallido para: " + request.getUsername());
+                } catch (Exception ex) {
+                    log.warn("Could not increment login attempts for user: {}", request.getUsername());
+                }
             }
 
-            throw new RuntimeException("Authentication failed: " + e.getMessage());
+            throw e; // Relanzar excepción original para que llegue al handler global
         }
     }
 

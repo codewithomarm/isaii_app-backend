@@ -1,5 +1,6 @@
 package com.isaiiapp.backend.security.v1.exception;
 
+import com.isaiiapp.backend.auth.v1.exception.AccountLockedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ import java.util.Map;
 @RestControllerAdvice
 @Slf4j
 public class SecurityExceptionHandler {
+
+    @ExceptionHandler(AccountLockedException.class)
+    public ResponseEntity<String> handleAccountLocked(AccountLockedException ex) {
+        log.warn("Account locked: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.LOCKED).body("AccountLockedException: " + ex.getMessage());
+    }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Map<String, Object>> handleBadCredentials(BadCredentialsException ex) {
@@ -39,6 +46,12 @@ public class SecurityExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleAuthentication(AuthenticationException ex) {
         log.error("Authentication error: {}", ex.getMessage());
         return buildErrorResponse(HttpStatus.UNAUTHORIZED, "Authentication failed", "AUTHENTICATION_FAILED");
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGeneric(Exception ex) {
+        log.error("Unexpected error: {}", ex.getMessage(), ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + ex.getMessage());
     }
 
     private ResponseEntity<Map<String, Object>> buildErrorResponse(HttpStatus status, String message, String errorCode) {

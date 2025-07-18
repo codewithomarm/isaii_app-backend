@@ -50,7 +50,9 @@ dependencies {
 
 	// Testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-test-autoconfigure'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -60,6 +62,13 @@ compileJava {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+test {
+	testLogging {
+		events "passed", "failed", "skipped", "standardOut", "standardError"
+		showStandardStreams = true
+	}
 }
 
 // Configuración para el JAR ejecutable
