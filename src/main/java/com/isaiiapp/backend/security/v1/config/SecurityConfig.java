@@ -1,15 +1,12 @@
 package com.isaiiapp.backend.security.v1.config;
 
-import com.isaiiapp.backend.auth.v1.exception.AccountLockedException;
 import com.isaiiapp.backend.security.v1.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -20,7 +17,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -40,7 +36,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/v1/auth/login",
-                                "/api/v1/auth/refresh",
                                 "/actuator/health",
                                 "/actuator/info"
                         ).permitAll()
@@ -63,7 +58,7 @@ public class SecurityConfig {
                         .requestMatchers( "POST", "/api/v1/permissions").hasAnyAuthority("PERMISSION_PERMISSION_CREATE", "PERMISSION_SYSTEM_ADMIN")
                         .requestMatchers( "PUT", "/api/v1/permissions/**").hasAnyAuthority("PERMISSION_PERMISSION_UPDATE", "PERMISSION_SYSTEM_ADMIN")
                         .requestMatchers( "DELETE", "/api/v1/permissions/**").hasAnyAuthority("PERMISSION_PERMISSION_DELETE", "PERMISSION_SYSTEM_ADMIN")
-                        .requestMatchers( "GET", "/api/v1/permissions/{id}").hasAuthority("PERMISSION_USER_MANAGEMENT")
+                        .requestMatchers( "GET", "/v1/permissions/{id}").hasAuthority("PERMISSION_USER_MANAGEMENT")
                         .requestMatchers( "GET", "/api/v1/permissions/name/**").hasAnyAuthority("PERMISSION_PERMISSION_READ", "PERMISSION_SYSTEM_ADMIN")
                         .requestMatchers( "GET", "/api/v1/permissions").hasAuthority("PERMISSION_USER_MANAGEMENT")
                         .requestMatchers( "GET", "/api/v1/permissions/search").hasAnyAuthority("PERMISSION_PERMISSION_READ", "PERMISSION_SYSTEM_ADMIN")
