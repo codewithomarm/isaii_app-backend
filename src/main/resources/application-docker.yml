@@ -29,3 +29,10 @@ server:
   # Cambiar el context path para que coincida con los logs
   servlet:
     context-path: /api
+
+# Spring Doc configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
