@@ -37,7 +37,6 @@ public class ProductController {
      * Solo administradores pueden crear productos
      */
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody CreateProductRequest request) {
         log.info("REST request to create product: {}", request.getName());
 
@@ -50,7 +49,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
         log.debug("REST request to get product by ID: {}", id);
 
@@ -65,7 +63,6 @@ public class ProductController {
      * Solo administradores pueden actualizar productos
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductResponse> updateProduct(
             @PathVariable Long id,
             @Valid @RequestBody UpdateProductRequest request) {
@@ -80,7 +77,6 @@ public class ProductController {
      * Solo administradores pueden eliminar productos
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.info("REST request to delete product with ID: {}", id);
 
@@ -93,7 +89,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> getAllProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -117,7 +112,6 @@ public class ProductController {
      * Accesible para meseros y cocina (para ver menú disponible)
      */
     @GetMapping("/active")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> getActiveProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -140,7 +134,6 @@ public class ProductController {
      * Solo administradores pueden ver productos inactivos
      */
     @GetMapping("/inactive")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<ProductResponse>> getInactiveProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -163,7 +156,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/category/{categoryId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> getProductsByCategory(
             @PathVariable Long categoryId,
             @RequestParam(defaultValue = "0") int page,
@@ -187,7 +179,6 @@ public class ProductController {
      * Accesible para meseros y cocina (para menú disponible por categoría)
      */
     @GetMapping("/category/{categoryId}/active")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> getActiveProductsByCategory(
             @PathVariable Long categoryId,
             @RequestParam(defaultValue = "0") int page,
@@ -211,7 +202,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/search/name")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> searchProductsByName(
             @RequestParam String name,
             @RequestParam(defaultValue = "0") int page,
@@ -235,7 +225,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/search/description")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> searchProductsByDescription(
             @RequestParam String description,
             @RequestParam(defaultValue = "0") int page,
@@ -259,7 +248,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/price-range")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Page<ProductResponse>> getProductsByPriceRange(
             @RequestParam BigDecimal minPrice,
             @RequestParam BigDecimal maxPrice,
@@ -284,7 +272,6 @@ public class ProductController {
      * Solo administradores pueden ver reportes por fechas
      */
     @GetMapping("/created-between")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<ProductResponse>> getProductsCreatedBetween(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -309,7 +296,6 @@ public class ProductController {
      * Solo administradores pueden ver reportes por fechas
      */
     @GetMapping("/updated-between")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<ProductResponse>> getProductsUpdatedBetween(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -334,7 +320,6 @@ public class ProductController {
      * Solo administradores pueden cambiar el estado de productos
      */
     @PatchMapping("/{id}/toggle-status")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, String>> toggleProductStatus(
             @PathVariable Long id,
             @RequestParam Boolean isActive) {
@@ -349,7 +334,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/exists/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Map<String, Boolean>> checkProductExists(@PathVariable Long id) {
         log.debug("REST request to check if product exists by ID: {}", id);
 
@@ -362,7 +346,6 @@ public class ProductController {
      * Solo administradores pueden ver estadísticas
      */
     @GetMapping("/stats")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductService.ProductStatsResponse> getProductStats() {
         log.debug("REST request to get product statistics");
 
@@ -375,7 +358,6 @@ public class ProductController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/count/category/{categoryId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK')")
     public ResponseEntity<Map<String, Long>> countProductsByCategory(@PathVariable Long categoryId) {
         log.debug("REST request to count products by category ID: {}", categoryId);
 
