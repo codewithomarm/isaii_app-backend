@@ -2,8 +2,11 @@ package com.isaiiapp.backend.security.v1.service;
 
 import com.isaiiapp.backend.auth.v1.auth.service.AuthService;
 import com.isaiiapp.backend.auth.v1.exception.AccountLockedException;
+import com.isaiiapp.backend.auth.v1.roles.dto.response.RolesResponse;
+import com.isaiiapp.backend.auth.v1.roles.service.RolesService;
 import com.isaiiapp.backend.auth.v1.session.model.Session;
 import com.isaiiapp.backend.auth.v1.session.service.SessionService;
+import com.isaiiapp.backend.auth.v1.users.dto.response.UsersResponse;
 import com.isaiiapp.backend.auth.v1.users.mapper.UsersMapper;
 import com.isaiiapp.backend.security.v1.dto.request.LoginRequest;
 import com.isaiiapp.backend.security.v1.dto.request.RefreshTokenRequest;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private final UserDetailsService userDetailsService;
     private final JwtService jwtService;
     private final AuthService authService;
+    private final RolesService rolesService;
     private final SessionService sessionService;
     private final UsersMapper usersMapper;
 
@@ -75,9 +80,11 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             response.setRefreshToken(refreshToken);
             response.setExpiresIn(jwtService.getAccessTokenExpiration());
             response.setExpiresAt(LocalDateTime.now().plusSeconds(jwtService.getAccessTokenExpiration() / 1000));
-            var user = authResponse.getUser();
-            user.getRoles().size(); // ← fuerza la carga
-            response.setUser(user);
+
+            var userEntity = authResponse.getUser();
+            List<RolesResponse> rolesDtoList = rolesService.getRolesByUserIdList(userEntity.getId());
+            UsersResponse userDto = usersMapper.toResponse(userEntity, rolesDtoList);
+            response.setUser(userDto);
 
             log.info("Authentication successful for user: {}", request.getUsername());
             return response;
