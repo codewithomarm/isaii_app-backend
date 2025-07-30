@@ -229,7 +229,8 @@ public class RolesPermissionInitializer implements CommandLineRunner {
         List<Permission> extraHostPermissions = createPermissionsIfNotExist(List.of(
                 "PERMISSION_ORDER_CREATE",
                 "PERMISSION_ORDER_READ",
-                "PERMISSION_ORDER_UPDATE"
+                "PERMISSION_ORDER_UPDATE",
+                "PERMISSION_ORDER_DELETE"
         ));
 
         Roles host = rolesRepository.findByName("HOST")
@@ -240,7 +241,8 @@ public class RolesPermissionInitializer implements CommandLineRunner {
         // Permisos para COOK
         List<Permission> extraCookPermissions = createPermissionsIfNotExist(List.of(
                 "PERMISSION_ORDER_READ",
-                "PERMISSION_ORDER_UPDATE"
+                "PERMISSION_ORDER_UPDATE",
+                "PERMISSION_ORDER_STATUS_MANAGE"
         ));
 
         Roles cook = rolesRepository.findByName("COOK")
