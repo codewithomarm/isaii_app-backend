@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Component
-@Order(3) // Se ejecuta después de usuarios y roles
+@Order(3)
 @RequiredArgsConstructor
 @Slf4j
 public class ProductDataInitializer implements CommandLineRunner {

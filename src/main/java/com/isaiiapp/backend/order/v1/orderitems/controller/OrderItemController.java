@@ -35,7 +35,6 @@ public class OrderItemController {
      * Meseros y administradores pueden crear items
      */
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_CREATE')")
     public ResponseEntity<OrderItemResponse> createOrderItem(@Valid @RequestBody CreateOrderItemRequest request) {
         log.info("REST request to create order item for order ID: {}, product ID: {}", request.getOrderId(), request.getProductId());
 
@@ -48,7 +47,6 @@ public class OrderItemController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<OrderItemResponse> getOrderItemById(@PathVariable Long id) {
         log.debug("REST request to get order item by ID: {}", id);
 
@@ -63,7 +61,6 @@ public class OrderItemController {
      * Solo administradores y meseros pueden actualizar items
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderItemResponse> updateOrderItem(
             @PathVariable Long id,
             @Valid @RequestBody UpdateOrderItemRequest request) {
@@ -78,7 +75,6 @@ public class OrderItemController {
      * Solo administradores pueden eliminar items
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_DELETE')")
     public ResponseEntity<Void> deleteOrderItem(@PathVariable Long id) {
         log.info("REST request to delete order item with ID: {}", id);
 
@@ -91,7 +87,6 @@ public class OrderItemController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getAllOrderItems(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -114,7 +109,6 @@ public class OrderItemController {
      * Obtener items por orden
      */
     @GetMapping("/order/{orderId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByOrderId(
             @PathVariable Long orderId,
             @RequestParam(defaultValue = "0") int page,
@@ -137,7 +131,6 @@ public class OrderItemController {
      * Obtener items por orden (lista completa)
      */
     @GetMapping("/order/{orderId}/all")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<List<OrderItemResponse>> getAllOrderItemsByOrderId(@PathVariable Long orderId) {
         log.debug("REST request to get all order items by order ID: {}", orderId);
 
@@ -149,7 +142,6 @@ public class OrderItemController {
      * Obtener items por producto
      */
     @GetMapping("/product/{productId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByProductId(
             @PathVariable Long productId,
             @RequestParam(defaultValue = "0") int page,
@@ -172,7 +164,6 @@ public class OrderItemController {
      * Buscar items por nombre de producto
      */
     @GetMapping("/search/product")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> searchOrderItemsByProductName(
             @RequestParam String productName,
             @RequestParam(defaultValue = "0") int page,
@@ -195,7 +186,6 @@ public class OrderItemController {
      * Obtener items por categoría de producto
      */
     @GetMapping("/category/{categoryId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByProductCategoryId(
             @PathVariable Long categoryId,
             @RequestParam(defaultValue = "0") int page,
@@ -218,7 +208,6 @@ public class OrderItemController {
      * Obtener items por cantidad específica
      */
     @GetMapping("/quantity/{quantity}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByQuantity(
             @PathVariable Integer quantity,
             @RequestParam(defaultValue = "0") int page,
@@ -241,7 +230,6 @@ public class OrderItemController {
      * Obtener items por rango de precio unitario
      */
     @GetMapping("/unit-price-range")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByUnitPriceBetween(
             @RequestParam BigDecimal minPrice,
             @RequestParam BigDecimal maxPrice,
@@ -265,7 +253,6 @@ public class OrderItemController {
      * Buscar items por instrucciones especiales
      */
     @GetMapping("/search/instructions")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> searchOrderItemsBySpecialInstructions(
             @RequestParam String instructions,
             @RequestParam(defaultValue = "0") int page,
@@ -288,7 +275,6 @@ public class OrderItemController {
      * Obtener items con instrucciones especiales
      */
     @GetMapping("/with-instructions")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsWithSpecialInstructions(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -310,7 +296,6 @@ public class OrderItemController {
      * Obtener items por estado de orden
      */
     @GetMapping("/order-status/{statusName}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getOrderItemsByOrderStatusName(
             @PathVariable String statusName,
             @RequestParam(defaultValue = "0") int page,
@@ -333,7 +318,6 @@ public class OrderItemController {
      * Obtener items de hoy
      */
     @GetMapping("/today")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderItemResponse>> getTodaysOrderItems(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -355,7 +339,6 @@ public class OrderItemController {
      * Actualizar cantidad de item
      */
     @PatchMapping("/{id}/quantity")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderItemResponse> updateOrderItemQuantity(
             @PathVariable Long id,
             @RequestParam Integer quantity) {
@@ -369,7 +352,6 @@ public class OrderItemController {
      * Actualizar precio unitario de item
      */
     @PatchMapping("/{id}/unit-price")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderItemResponse> updateOrderItemUnitPrice(
             @PathVariable Long id,
             @RequestParam BigDecimal unitPrice) {
@@ -383,7 +365,6 @@ public class OrderItemController {
      * Actualizar instrucciones especiales de item
      */
     @PatchMapping("/{id}/instructions")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderItemResponse> updateOrderItemSpecialInstructions(
             @PathVariable Long id,
             @RequestParam String specialInstructions) {
@@ -397,7 +378,6 @@ public class OrderItemController {
      * Verificar si item de orden existe por ID
      */
     @GetMapping("/exists/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Boolean>> checkOrderItemExists(@PathVariable Long id) {
         log.debug("REST request to check if order item exists by ID: {}", id);
 
@@ -409,7 +389,6 @@ public class OrderItemController {
      * Contar items por orden
      */
     @GetMapping("/count/order/{orderId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Long>> countOrderItemsByOrderId(@PathVariable Long orderId) {
         log.debug("REST request to count order items by order ID: {}", orderId);
 
@@ -421,7 +400,6 @@ public class OrderItemController {
      * Contar items por producto
      */
     @GetMapping("/count/product/{productId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Long>> countOrderItemsByProductId(@PathVariable Long productId) {
         log.debug("REST request to count order items by product ID: {}", productId);
 
@@ -433,7 +411,6 @@ public class OrderItemController {
      * Obtener cantidad total por producto
      */
     @GetMapping("/total-quantity/product/{productId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Long>> getTotalQuantityByProductId(@PathVariable Long productId) {
         log.debug("REST request to get total quantity by product ID: {}", productId);
 
@@ -445,7 +422,6 @@ public class OrderItemController {
      * Obtener monto total por orden
      */
     @GetMapping("/total-amount/order/{orderId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, BigDecimal>> getTotalAmountByOrderId(@PathVariable Long orderId) {
         log.debug("REST request to get total amount by order ID: {}", orderId);
 
@@ -457,7 +433,6 @@ public class OrderItemController {
      * Obtener productos más pedidos
      */
     @GetMapping("/most-ordered-products")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<List<OrderItemService.ProductOrderStatsResponse>> getMostOrderedProducts() {
         log.debug("REST request to get most ordered products");
 
@@ -469,7 +444,6 @@ public class OrderItemController {
      * Obtener productos más pedidos hoy
      */
     @GetMapping("/todays-most-ordered-products")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<List<OrderItemService.ProductOrderStatsResponse>> getTodaysMostOrderedProducts() {
         log.debug("REST request to get today's most ordered products");
 
@@ -482,7 +456,6 @@ public class OrderItemController {
      * Solo administradores pueden ver estadísticas completas
      */
     @GetMapping("/stats")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<OrderItemService.OrderItemStatsResponse> getOrderItemStats() {
         log.debug("REST request to get order item statistics");
 

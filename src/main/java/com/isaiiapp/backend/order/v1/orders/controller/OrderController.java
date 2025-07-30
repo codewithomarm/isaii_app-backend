@@ -39,7 +39,6 @@ public class OrderController {
      * Meseros y administradores pueden crear órdenes
      */
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_CREATE')")
     public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody CreateOrderRequest request) {
         log.info("REST request to create order for user ID: {}, table ID: {}", request.getUserId(), request.getTableId());
 
@@ -52,7 +51,6 @@ public class OrderController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long id) {
         log.debug("REST request to get order by ID: {}", id);
 
@@ -67,7 +65,6 @@ public class OrderController {
      * Solo administradores y meseros pueden actualizar órdenes
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> updateOrder(
             @PathVariable Long id,
             @Valid @RequestBody UpdateOrderRequest request) {
@@ -82,7 +79,6 @@ public class OrderController {
      * Solo administradores pueden eliminar órdenes
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_DELETE')")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         log.info("REST request to delete order with ID: {}", id);
 
@@ -95,7 +91,6 @@ public class OrderController {
      * Accesible para todos los usuarios autenticados
      */
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getAllOrders(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -118,7 +113,6 @@ public class OrderController {
      * Obtener órdenes por usuario
      */
     @GetMapping("/user/{userId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByUserId(
             @PathVariable Long userId,
             @RequestParam(defaultValue = "0") int page,
@@ -141,7 +135,6 @@ public class OrderController {
      * Obtener órdenes por mesa
      */
     @GetMapping("/table/{tableId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByTableId(
             @PathVariable Long tableId,
             @RequestParam(defaultValue = "0") int page,
@@ -164,7 +157,6 @@ public class OrderController {
      * Obtener órdenes por estado
      */
     @GetMapping("/status/{statusId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByStatusId(
             @PathVariable Long statusId,
             @RequestParam(defaultValue = "0") int page,
@@ -187,7 +179,6 @@ public class OrderController {
      * Obtener órdenes por nombre de estado
      */
     @GetMapping("/status/name/{statusName}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByStatusName(
             @PathVariable String statusName,
             @RequestParam(defaultValue = "0") int page,
@@ -210,7 +201,6 @@ public class OrderController {
      * Obtener órdenes por número de mesa
      */
     @GetMapping("/table/number/{tableNumber}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByTableNumber(
             @PathVariable String tableNumber,
             @RequestParam(defaultValue = "0") int page,
@@ -233,7 +223,6 @@ public class OrderController {
      * Obtener órdenes por employee ID
      */
     @GetMapping("/employee/{employeeId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByEmployeeId(
             @PathVariable String employeeId,
             @RequestParam(defaultValue = "0") int page,
@@ -256,7 +245,6 @@ public class OrderController {
      * Obtener órdenes por rango de fechas de creación
      */
     @GetMapping("/created-between")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByCreatedAtBetween(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -280,7 +268,6 @@ public class OrderController {
      * Obtener órdenes por rango de total
      */
     @GetMapping("/total-range")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByTotalBetween(
             @RequestParam BigDecimal minTotal,
             @RequestParam BigDecimal maxTotal,
@@ -304,7 +291,6 @@ public class OrderController {
      * Buscar órdenes por nombre de usuario
      */
     @GetMapping("/search/user")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> searchOrdersByUserName(
             @RequestParam String name,
             @RequestParam(defaultValue = "0") int page,
@@ -327,7 +313,6 @@ public class OrderController {
      * Obtener órdenes de hoy
      */
     @GetMapping("/today")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getTodaysOrders(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -349,7 +334,6 @@ public class OrderController {
      * Obtener órdenes por tipo (takeaway/dine-in)
      */
     @GetMapping("/type/{isTakeaway}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> getOrdersByTakeawayType(
             @PathVariable Boolean isTakeaway,
             @RequestParam(defaultValue = "0") int page,
@@ -372,7 +356,6 @@ public class OrderController {
      * Buscar órdenes por notas
      */
     @GetMapping("/search/notes")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Page<OrderResponse>> searchOrdersByNotes(
             @RequestParam String notes,
             @RequestParam(defaultValue = "0") int page,
@@ -396,7 +379,6 @@ public class OrderController {
      * Cocina y administradores pueden cambiar estados
      */
     @PatchMapping("/{id}/status")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> changeOrderStatus(
             @PathVariable Long id,
             @RequestParam Long statusId) {
@@ -410,7 +392,6 @@ public class OrderController {
      * Marcar orden como en progreso
      */
     @PatchMapping("/{id}/mark-in-progress")
-    @PreAuthorize("hasAnyRole('ADMIN', 'COOK') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> markOrderInProgress(@PathVariable Long id) {
         log.info("REST request to mark order as in progress for ID: {}", id);
 
@@ -422,7 +403,6 @@ public class OrderController {
      * Marcar orden como completada
      */
     @PatchMapping("/{id}/mark-completed")
-    @PreAuthorize("hasAnyRole('ADMIN', 'COOK') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> markOrderCompleted(@PathVariable Long id) {
         log.info("REST request to mark order as completed for ID: {}", id);
 
@@ -434,7 +414,6 @@ public class OrderController {
      * Marcar orden como pagada
      */
     @PatchMapping("/{id}/mark-paid")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> markOrderPaid(@PathVariable Long id) {
         log.info("REST request to mark order as paid for ID: {}", id);
 
@@ -446,7 +425,6 @@ public class OrderController {
      * Marcar orden como cancelada
      */
     @PatchMapping("/{id}/mark-canceled")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> markOrderCanceled(@PathVariable Long id) {
         log.info("REST request to mark order as canceled for ID: {}", id);
 
@@ -458,7 +436,6 @@ public class OrderController {
      * Actualizar notas de orden
      */
     @PatchMapping("/{id}/notes")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> updateOrderNotes(
             @PathVariable Long id,
             @RequestParam String notes) {
@@ -473,7 +450,6 @@ public class OrderController {
      * Solo administradores y meseros pueden actualizar totales
      */
     @PatchMapping("/{id}/total")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<OrderResponse> updateOrderTotal(
             @PathVariable Long id,
             @RequestParam BigDecimal total) {
@@ -487,7 +463,6 @@ public class OrderController {
      * Verificar si orden existe por ID
      */
     @GetMapping("/exists/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Boolean>> checkOrderExists(@PathVariable Long id) {
         log.debug("REST request to check if order exists by ID: {}", id);
 
@@ -499,7 +474,6 @@ public class OrderController {
      * Obtener tiempo promedio de preparación
      */
     @GetMapping("/average-preparation-time")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<Map<String, Double>> getAveragePreparationTime() {
         log.debug("REST request to get average preparation time");
 
@@ -512,7 +486,6 @@ public class OrderController {
      * Solo administradores pueden ver estadísticas completas
      */
     @GetMapping("/stats")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<OrderService.OrderStatsResponse> getOrderStats() {
         log.debug("REST request to get order statistics");
 
@@ -524,7 +497,6 @@ public class OrderController {
      * Contar órdenes por estado
      */
     @GetMapping("/count/status/{statusName}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Long>> countOrdersByStatusName(@PathVariable String statusName) {
         log.debug("REST request to count orders by status name: {}", statusName);
 
@@ -536,7 +508,6 @@ public class OrderController {
      * Contar órdenes de hoy
      */
     @GetMapping("/count/today")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST', 'COOK') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Long>> countTodaysOrders() {
         log.debug("REST request to count today's orders");
 
@@ -548,7 +519,6 @@ public class OrderController {
      * Recalcular total de orden manualmente
      */
     @PostMapping("/{id}/recalculate-total")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_UPDATE')")
     public ResponseEntity<Map<String, BigDecimal>> recalculateOrderTotal(@PathVariable Long id) {
         log.info("REST request to recalculate total for order ID: {}", id);
 
@@ -560,7 +530,6 @@ public class OrderController {
      * Verificar consistencia de total de orden
      */
     @GetMapping("/{id}/check-total-consistency")
-    @PreAuthorize("hasAnyRole('ADMIN', 'HOST') or hasAuthority('PERMISSION_ORDER_READ')")
     public ResponseEntity<Map<String, Object>> checkOrderTotalConsistency(@PathVariable Long id) {
         log.debug("REST request to check total consistency for order ID: {}", id);
 
@@ -577,7 +546,6 @@ public class OrderController {
      * Obtener órdenes con totales inconsistentes
      */
     @GetMapping("/inconsistent-totals")
-    @PreAuthorize("hasRole('ADMIN') or hasAuthority('PERMISSION_ORDER_STATS')")
     public ResponseEntity<List<OrderTotalService.OrderTotalInconsistencyResponse>> getInconsistentOrderTotals() {
         log.debug("REST request to get orders with inconsistent totals");
 
@@ -591,7 +559,6 @@ public class OrderController {
      * Recalcular todos los totales de órdenes (mantenimiento)
      */
     @PostMapping("/recalculate-all-totals")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, String>> recalculateAllOrderTotals() {
         log.info("REST request to recalculate all order totals");
 
