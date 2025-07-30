@@ -130,7 +130,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/v1/order-items/todays-most-ordered-products").hasAnyRole("ADMIN", "HOST")
                         .requestMatchers(HttpMethod.GET, "/v1/order-items/stats").hasRole("ADMIN")
                         // Modulo Orders V1
-                        .requestMatchers("POST", "/v1/orders").hasAnyRole("ADMIN", "HOST")
+                        .requestMatchers("POST", "/v1/orders").hasAnyAuthority("ADMIN", "HOST")
                         .requestMatchers("PUT", "/v1/orders/**").hasAnyRole("ADMIN", "HOST")
                         .requestMatchers("PATCH", "/v1/orders/*/notes").hasAnyRole("ADMIN", "HOST")
                         .requestMatchers("PATCH", "/v1/orders/*/total").hasAnyRole("ADMIN", "HOST")
