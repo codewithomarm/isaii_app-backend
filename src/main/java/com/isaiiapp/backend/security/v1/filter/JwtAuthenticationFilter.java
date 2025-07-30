@@ -56,6 +56,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // Cargar detalles del usuario
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
+                log.info("Authorities for user {}: {}", userDetails.getUsername(), userDetails.getAuthorities());
+
                 // Validar el token
                 if (jwtService.validateToken(jwt, userDetails)) {
                     // Crear token de autenticación
