@@ -75,7 +75,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             response.setRefreshToken(refreshToken);
             response.setExpiresIn(jwtService.getAccessTokenExpiration());
             response.setExpiresAt(LocalDateTime.now().plusSeconds(jwtService.getAccessTokenExpiration() / 1000));
-            response.setUser(authResponse.getUser());
+            var user = authResponse.getUser();
+            user.getRoles().size(); // ← fuerza la carga
+            response.setUser(user);
 
             log.info("Authentication successful for user: {}", request.getUsername());
             return response;
